@@ -1,5 +1,7 @@
+import ProductCollection from "@/components/collections/productcollection";
+
 export default function Courses() {
   return (
-    <h1>Courses</h1>
+  <ProductCollection />
   );
 }
