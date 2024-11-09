@@ -29,7 +29,7 @@ function ProductCard({ product, onToggleFavorite }) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "start",
-        maxWidth: 345,
+        maxWidth: 300,
         my: 2,
       }} //hehe tany
     >
@@ -158,7 +158,7 @@ function ProductCard({ product, onToggleFavorite }) {
         >
           Enroll Now
         </Button>
-        <Typography variant="h6" sx={{ color: "#6524D3", fontWeight: "bold" }}>
+        <Typography variant="text" sx={{ color: "#6524D3", fontWeight: "bold" }}>
           ${product.price}
         </Typography>
       </CardActions>

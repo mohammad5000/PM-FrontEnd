@@ -21,8 +21,8 @@ export default function ProductCollection() {
   };
 
   return (
-    <Container sx={{marginY:5, justifyContent:"center"}}>
-      <Grid container spacing={2}>
+    <Container sx={{marginY:5}}>
+      <Grid container spacing={2} justifyContent={"center"} >
       {products.map((product) => (
         <Grid  key={product.id} item >
         <ProductCard
