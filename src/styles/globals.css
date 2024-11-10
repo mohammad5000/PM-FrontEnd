@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.current {
+  background-color: #F65D11;
+  color: white;
+}
 
 
