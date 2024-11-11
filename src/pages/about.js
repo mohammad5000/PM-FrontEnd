@@ -1,5 +1,10 @@
+import ContactForm from "@/components/Contact";
+import { Container } from "@mui/material";
+
 export default function About() {
   return (
-      <h1>About Us</h1>
+    <Container sx={{mt:10}}>
+      <ContactForm />
+      </Container>
   );
 }

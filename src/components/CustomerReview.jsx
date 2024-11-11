@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import StarRating from "./starRate";
+import StarRating from "./StarRate";
 import UserTag from "./UserTag";
 
 const CustomerReview = ({ImageSource="/assets/Images/defultImage.png",Text=""}) => (
