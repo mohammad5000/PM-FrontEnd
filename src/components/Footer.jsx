@@ -14,7 +14,7 @@ import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 
 export default function Footer() {
   return (
-    <Box sx={{ mt: 10, pt: 5, justifyContent: "center" }}>
+    <Box sx={{ mt: 5, pt: 5, justifyContent: "center" }}>
       <Container maxWidth={"lg"} disableGutters>
         <Grid
           container
@@ -27,7 +27,7 @@ export default function Footer() {
           <Grid item xs={12} md={3}>
             <Box display="flex" flexDirection="column" alignItems="flex-start">
               <Image
-                src="/assets/Images/tree-736885_640.jpg"
+                src="/assets/Images/Logo.png"
                 alt="PM Academy Logo"
                 width={125}
                 height={125}
@@ -234,7 +234,7 @@ export default function Footer() {
           </Grid>
         </Grid>
       </Container>
-      <Box mt={5} textAlign="center" sx={{ backgroundColor: "#E0E0E0" }}>
+      <Box mt={5} textAlign="center" sx={{ backgroundColor: "#E0E0E0", paddingY:1}}>
         <Typography variant="body2" color="black">
           ©2024
         </Typography>

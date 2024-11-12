@@ -21,7 +21,7 @@ export default function ProductCollection() {
   };
 
   return (
-    <Container sx={{marginY:5}}>
+    <Box sx={{marginY:2}}>
       <Grid container spacing={2} justifyContent={"center"} >
       {products.map((product) => (
         <Grid  key={product.id} item >
@@ -32,6 +32,6 @@ export default function ProductCollection() {
         </Grid>
       ))}
       </Grid>
-    </Container> //hehe
+    </Box> //hehe
   );
 }

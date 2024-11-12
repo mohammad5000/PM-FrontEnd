@@ -1,12 +1,18 @@
+import { Box, Button, Container, Typography, Tab, Tabs } from "@mui/material";
+import { useState } from "react";
 import Stack from "@mui/material/Stack";
-import { Box, Button, Typography } from "@mui/material";
 import Image from "next/image";
 import CustomerReview from "@/components/CustomerReview";
 import HeroSectionPrime from "@/components/HeroSectionPrime";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ContactForm from "@/components/Contact";
+import ProductCollection from "@/components/collections/productcollection";
 
 export default function Home() {
   return (
     <Stack direction="column">
+      <Navbar />
       <HeroSectionPrime
         Height=""
         SideImage={"/assets/Images/HomeHeroImage.png"}
@@ -65,8 +71,16 @@ export default function Home() {
         }
         imgSrc={"/assets/Images/HOME Hero.png"}
       />
-
+      <Container sx={{marginY:10}}>
+        <ProductHomeHeader />
+        <ProductCat />
+        <ProductCollection />
+      </Container>
       <WhyUsSection />
+      <Container sx={{ marginY: 10 }}>
+        <ContactForm />
+      </Container>
+      <Footer />
     </Stack>
   );
 }
@@ -120,7 +134,7 @@ function WhyUsSection() {
 
   return (
     <div className="flex flex-col items-center justify-center bg-gradient-to-b from-[#6524D3] to-[#007DA5] text-white text-center md:px-[144px] py-5">
-      <Stack direction="column" sx={{ color: "white", width: "100%", pb: 5 }}>
+      <Stack direction="column" sx={{ color: "white", width: "100%", pb: 10 }}>
         <Typography variant="h4" sx={{ color: "white" }}>
           Why Study With Us?
         </Typography>
@@ -196,3 +210,77 @@ function WhyUsSection() {
     </div>
   );
 }
+
+const ProductHomeHeader = () => {
+  return (
+    
+      /* Title and Description */
+      <Box display={"flex"} flexDirection={{xs:"column",md:"row"}} justifyContent={"space-between"} sx={{ p: 4 }} textAlign={{xs:'center',md:'left'}}>
+        <Box>
+          <Typography variant="h4" fontWeight="bold">
+            Browse Our Courses
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            When known printer took a galley of type scramble make
+          </Typography>
+        </Box>
+        {/* Button */}
+        <Button
+          variant="outlined"
+          href="/courses"
+          sx={{
+            borderColor: "#6524D3",
+            color: "#6524D3",
+            fontWeight: "bolder",
+            fontSize: "16px",
+            height: "50px",
+            marginTop: "10px",
+            padding: "0px 60px",
+            border: "4px solid #6524D3",
+            borderRadius: "8px",
+            transform:'0.3s',
+            "&:hover": {
+              color: "white",
+              backgroundColor: "#6524D3",
+              transform: "0.3s",
+            },
+          }}
+        >
+          View Courses
+        </Button>
+      </Box>
+  );
+};
+
+
+const ProductCat = () => {
+  const [selectedTab, setSelectedTab] = useState(0);
+
+  const handleTabChange = (event,newValue) => {
+    setSelectedTab(newValue);
+  };
+
+   return (
+  /* Tabs for Course Categories */
+  <Box sx={{ display: "flex", alignItems: "center", justifyContent:'center', mb: 2 }}>
+    <Tabs
+      value={selectedTab}
+      onChange={handleTabChange} 
+      textColor="inherit"
+      sx={{
+        '& .MuiTabs-indicator': {
+          backgroundColor: '#6524D3',
+        },
+        '& .Mui-selected': {
+          color: '#6524D3', // Text color for selected tab
+        },
+      }}
+    >
+      <Tab label="All Courses" disableRipple/>
+      <Tab label="PMP 2024" disableRipple/>
+      <Tab label="PMP 2024" disableRipple/>
+      <Tab label="PMP 2024" disableRipple/>
+    </Tabs>
+  </Box>
+  )
+};

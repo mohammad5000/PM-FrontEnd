@@ -15,6 +15,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 const NavbarTop = ({ langs }) => {
@@ -43,7 +44,7 @@ const NavbarTop = ({ langs }) => {
         {/* Left side - Logo */}
         <Link href="/">
           <Image
-            src="/assets/Images/tree-736885_640.jpg"
+            src="/assets/Images/Logo.png"
             alt="PM Academy Logo"
             width={75}
             height={75}
@@ -114,6 +115,8 @@ const NavbarBottom = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const router = useRouter();
+
   const handleCategoriesClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -125,6 +128,7 @@ const NavbarBottom = () => {
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
 
   return (
     <AppBar
@@ -196,6 +200,7 @@ const NavbarBottom = () => {
         >
           <Button
             href="/"
+            className={router.pathname === "/" ? "current" : ""}
             sx={{
               textTransform: "none",
               color: "black",
@@ -211,8 +216,8 @@ const NavbarBottom = () => {
             Home
           </Button>
           <Button
-          className="current"
             href="/courses"
+            className={router.pathname === "/courses" ? "current" : ""}
             sx={{
               textTransform: "none",
               color: "black",
@@ -230,6 +235,7 @@ const NavbarBottom = () => {
           </Button>
           <Button
             href="/free/videos"
+            className={router.pathname === "/free/video" ? "current" : ""}
             sx={{
               textTransform: "none",
               color: "black",
@@ -246,6 +252,7 @@ const NavbarBottom = () => {
           </Button>
           <Button
             href="/about"
+            className={router.pathname === "/about" ? "current" : ""}
             sx={{
               textTransform: "none",
               color: "black",
