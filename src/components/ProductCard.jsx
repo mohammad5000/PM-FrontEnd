@@ -16,12 +16,18 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import Rating from "@mui/material/Rating";
 import Link from "next/link";
+import { useState } from "react";
  
 // TO DO 1: Update all the hard-coded values with the theme values
 
 
 
-function ProductCard({ product, onToggleFavorite }) {
+function ProductCard({ _product, onToggleFavorite }) {
+  const [product, setProduct] = useState(_product);
+
+  const onToggleFav =() => {
+    setProduct({...product, isFavorite: !product.isFavorite});
+  }
   return (
     <Card
       elevation={0}
@@ -59,7 +65,7 @@ function ProductCard({ product, onToggleFavorite }) {
         />
         </Link>
         <IconButton
-          onClick={onToggleFavorite}
+          onClick={onToggleFav}
           sx={{
             position: "absolute",
             top: 10,

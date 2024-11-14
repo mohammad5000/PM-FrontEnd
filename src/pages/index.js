@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/Contact";
 import ProductCollection from "@/components/collections/productcollection";
+import products from "@/data/products";
 
 export default function Home() {
   return (
@@ -74,7 +75,7 @@ export default function Home() {
       <Container sx={{marginY:10}}>
         <ProductHomeHeader />
         <ProductCat />
-        <ProductCollection />
+        <ProductCollection paginatedProducts={products.slice(0,6)}  />
       </Container>
       <WhyUsSection />
       <Container sx={{ marginY: 10 }}>

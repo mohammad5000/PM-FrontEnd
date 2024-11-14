@@ -80,7 +80,7 @@ export default function Footer() {
                 sx={{ mr: "8px", color: "#6524D3" }}
               />
               <Link
-                href="#"
+                href="/free/videos"
                 variant="body2"
                 color="textSecondary"
                 fontSize={"14px"}

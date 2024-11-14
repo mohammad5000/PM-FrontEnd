@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 .current {
-  text-decoration: underline;
-  color: #6524D3;
+  background-color: #6524D3;
+  color: white;
 }
 
 
