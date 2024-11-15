@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import initial_products from "@/data/products";
 import Box from "@mui/material/Box";
-import CoursesHeader from "./_sections/heroSection";
+import CoursesHeader from "./_sections/HeroSection";
 
 import { dataInstructors } from "@/data/instructors";
 import { dataCats } from "@/data/cat";

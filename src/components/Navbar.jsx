@@ -224,7 +224,6 @@ const NavbarBottom = () => {
               fontWeight: "bold",
               height: "64px",
               padding: "0 25px",
-              borderRadius: 0,
               "&:hover": {
                 backgroundColor: "#6524D3",
                 color: "white",
