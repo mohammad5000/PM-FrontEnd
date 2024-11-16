@@ -4,12 +4,11 @@ import Stack from "@mui/material/Stack";
 import Image from "next/image";
 import CustomerReview from "@/components/CustomerReview";
 import HeroSectionPrime from "@/components/HeroSectionPrime";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ContactForm from "@/components/Contact";
 import ProductCollection from "@/components/collections/productcollection";
 import products from "@/data/products";
 import MainLayout from "@/layout/MainLayout";
+import reviews from "@/data/review";
 
 export default function Home() {
   return (
@@ -203,18 +202,11 @@ function WhyUsSection() {
           justifyContent: "space-between",
         }}
       >
-        <CustomerReview
-          ImageSource="/assets/Images/IconExam.png"
-          Text="Expert-Led and Globally Recognized"
-        />
-        <CustomerReview
-          ImageSource="/assets/Images/IconExam.png"
-          Text="Expert-Led and Globally Recognized"
-        />
-        <CustomerReview
-          ImageSource="/assets/Images/IconExam.png"
-          Text="Expert-Led and Globally Recognized"
-        />
+        {reviews.map((review, index) => {
+             return(
+              <CustomerReview key={index} Review={review}/>
+             )
+        })}
       </Stack>
     </div>
   );
