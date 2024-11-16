@@ -21,7 +21,6 @@ import { useState } from "react";
 const NavbarTop = ({ langs }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
   const handleLanguageClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -167,6 +166,7 @@ const NavbarBottom = () => {
                   backgroundColor: "#4B01D6",
                 }
               }}
+              
               onClick={handleClose}
             >
               Category 1
@@ -200,6 +200,7 @@ const NavbarBottom = () => {
         >
           <Button
             href="/"
+            component={Link}
             className={router.pathname === "/" ? "current" : ""}
             sx={{
               textTransform: "none",
@@ -214,9 +215,11 @@ const NavbarBottom = () => {
             }}
           >
             Home
+            
           </Button>
           <Button
             href="/courses"
+            component={Link}
             className={router.pathname === "/courses" ? "current" : ""}
             sx={{
               textTransform: "none",
@@ -234,6 +237,7 @@ const NavbarBottom = () => {
           </Button>
           <Button
             href="/free/videos"
+            component={Link}
             className={router.pathname === "/free/video" ? "current" : ""}
             sx={{
               textTransform: "none",
@@ -251,6 +255,7 @@ const NavbarBottom = () => {
           </Button>
           <Button
             href="/about"
+            component={Link}
             className={router.pathname === "/about" ? "current" : ""}
             sx={{
               textTransform: "none",
@@ -286,24 +291,28 @@ const NavbarBottom = () => {
         >
           <Button
             href="/"
+            component={Link}
             sx={{ textTransform: "none", color: "black", fontWeight: "bold" }}
           >
             Home
           </Button>
           <Button
             href="/courses"
+            component={Link}
             sx={{ textTransform: "none", color: "black", fontWeight: "bold" }}
           >
             Courses
           </Button>
           <Button
             href="/free/videos"
+            component={Link}
             sx={{ textTransform: "none", color: "black", fontWeight: "bold" }}
           >
             Free Resources
           </Button>
           <Button
             href="/about"
+            component={Link}
             sx={{ textTransform: "none", color: "black", fontWeight: "bold" }}
           >
             About Us

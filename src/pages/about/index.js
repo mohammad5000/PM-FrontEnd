@@ -6,12 +6,13 @@ import Footer from "@/components/Footer";
 import VisionSection from "./_sections/VisionSection";
 import MissionSection from "./_sections/MissionSection";
 import CEOSection from "./_sections/CEO";
+import MainLayout from "@/layout/MainLayout";
 
 
 export default function About() {
   return (
     <>
-      <Navbar />
+      <MainLayout>
       <AboutHeader />
       <Container maxWidth="lg" sx={{my:10}}>
         <Box sx={{ mt: 4 }}>
@@ -37,7 +38,7 @@ export default function About() {
           <ContactForm />
         </Container>
       </Box>
-      <Footer />
+      </MainLayout>
     </>
   );
 }

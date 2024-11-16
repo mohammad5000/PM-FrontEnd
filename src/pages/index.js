@@ -9,82 +9,90 @@ import Footer from "@/components/Footer";
 import ContactForm from "@/components/Contact";
 import ProductCollection from "@/components/collections/productcollection";
 import products from "@/data/products";
+import MainLayout from "@/layout/MainLayout";
 
 export default function Home() {
   return (
     <Stack direction="column">
-      <Navbar />
-      <HeroSectionPrime
-        Height=""
-        SideImage={"/assets/Images/HomeHeroImage.png"}
-        title={
-          <Typography
-            variant="h3"
-            sx={{
-              color: "#000000", // Change color for xs size, inherit for larger sizes
-              fontSize: { xs: "24px", md: "32px" }, // Responsive font size
-              fontWeight: "bold",
-            }}
-          >
-            Get Best
-            <span style={{ color: "#6524D3" }}> Project Management</span> Online
-            Courses with PM Academy
-          </Typography>
-        }
-        content={
-          <Stack direction="column">
+      {/* <Navbar /> */}
+      <MainLayout>
+        <HeroSectionPrime
+          Height=""
+          SideImage={"/assets/Images/HomeHeroImage.png"}
+          title={
             <Typography
-              variant="p"
+              variant="h3"
               sx={{
                 color: "#000000", // Change color for xs size, inherit for larger sizes
-                fontSize: { xs: "20px", md: "20px" }, // Responsive font size
+                fontSize: { xs: "24px", md: "32px" }, // Responsive font size
+                fontWeight: "bold",
               }}
             >
-              Start, switch, or advance your career in project management with
-              PM Academy Online Courses, Professional Certificates, and
-              Specialized Training Programs.{" "}
+              Get Best
+              <span style={{ color: "#6524D3" }}> Project Management</span> Online
+              Courses with PM Academy
             </Typography>
-            <br />
-            <Stack direction="row">
-              <Button
-                variant="contained"
-                sx={{ marginRight: 1, backgroundColor: "#6524D3" }}
-              >
-                Get Started
-              </Button>
-              <Button
-                variant="outlined"
+          }
+          content={
+            <Stack direction="column">
+              <Typography
+                variant="p"
                 sx={{
-                  marginRight: 1, // margin on the right
-                  color: "#6524D3", // text color
-                  borderColor: "#6524D3", // border color
-                  borderWidth: 2, // border width
-                  "&:hover": {
-                    borderColor: "#5E2EAB", // Optional: change border color on hover
-                    backgroundColor: "rgba(101, 36, 211, 0.1)", // Optional: background color on hover
-                  },
+                  color: "#000000", // Change color for xs size, inherit for larger sizes
+                  fontSize: { xs: "20px", md: "20px" }, // Responsive font size
                 }}
               >
-                Courses
-              </Button>
+                Start, switch, or advance your career in project management with
+                PM Academy Online Courses, Professional Certificates, and
+                Specialized Training Programs.{" "}
+              </Typography>
+              <br />
+              <Stack direction="row">
+                <Button
+                  variant="contained"
+                  sx={{ marginRight: 1, backgroundColor: "#6524D3" }}
+                >
+                  Get Started
+                </Button>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    marginRight: 1, // margin on the right
+                    color: "#6524D3", // text color
+                    borderColor: "#6524D3", // border color
+                    borderWidth: 2, // border width
+                    "&:hover": {
+                      borderColor: "#5E2EAB", // Optional: change border color on hover
+                      backgroundColor: "rgba(101, 36, 211, 0.1)", // Optional: background color on hover
+                    },
+                  }}
+                >
+                  Courses
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
-        }
-        imgSrc={"/assets/Images/HOME Hero.png"}
-      />
-      <Container sx={{marginY:10}}>
-        <ProductHomeHeader />
-        <ProductCat />
-        <ProductCollection paginatedProducts={products.slice(0,6)}  />
-      </Container>
-      <WhyUsSection />
-      <Container sx={{ marginY: 10 }}>
-        <ContactForm />
-      </Container>
-      <Footer />
+          }
+          imgSrc={"/assets/Images/HOME Hero.png"}
+        />
+        <Container sx={{ marginY: 10 }}>
+          <ProductHomeHeader />
+          <ProductCat />
+          <ProductCollection paginatedProducts={products.slice(0, 6)} />
+        </Container>
+        <WhyUsSection />
+        <Container sx={{ marginY: 10 }}>
+          <ContactForm />
+        </Container>
+        {/* <Footer /> */}
+      </MainLayout>
     </Stack>
   );
 }
+
+
+Home.getLayout = (page) => {
+  return <MainLayout>{page}</MainLayout>;
+};
 
 // -----------------------------------------------------------
 
@@ -214,42 +222,42 @@ function WhyUsSection() {
 
 const ProductHomeHeader = () => {
   return (
-    
-      /* Title and Description */
-      <Box display={"flex"} flexDirection={{xs:"column",md:"row"}} justifyContent={"space-between"} sx={{ p: 4 }} textAlign={{xs:'center',md:'left'}}>
-        <Box>
-          <Typography variant="h4" fontWeight="bold">
-            Browse Our Courses
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            When known printer took a galley of type scramble make
-          </Typography>
-        </Box>
-        {/* Button */}
-        <Button
-          variant="outlined"
-          href="/courses"
-          sx={{
-            borderColor: "#6524D3",
-            color: "#6524D3",
-            fontWeight: "bolder",
-            fontSize: "16px",
-            height: "50px",
-            marginTop: "10px",
-            padding: "0px 60px",
-            border: "4px solid #6524D3",
-            borderRadius: "8px",
-            transform:'0.3s',
-            "&:hover": {
-              color: "white",
-              backgroundColor: "#6524D3",
-              transform: "0.3s",
-            },
-          }}
-        >
-          View Courses
-        </Button>
+
+    /* Title and Description */
+    <Box display={"flex"} flexDirection={{ xs: "column", md: "row" }} justifyContent={"space-between"} sx={{ p: 4 }} textAlign={{ xs: 'center', md: 'left' }}>
+      <Box>
+        <Typography variant="h4" fontWeight="bold">
+          Browse Our Courses
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          When known printer took a galley of type scramble make
+        </Typography>
       </Box>
+      {/* Button */}
+      <Button
+        variant="outlined"
+        href="/courses"
+        sx={{
+          borderColor: "#6524D3",
+          color: "#6524D3",
+          fontWeight: "bolder",
+          fontSize: "16px",
+          height: "50px",
+          marginTop: "10px",
+          padding: "0px 60px",
+          border: "4px solid #6524D3",
+          borderRadius: "8px",
+          transform: '0.3s',
+          "&:hover": {
+            color: "white",
+            backgroundColor: "#6524D3",
+            transform: "0.3s",
+          },
+        }}
+      >
+        View Courses
+      </Button>
+    </Box>
   );
 };
 
@@ -257,31 +265,31 @@ const ProductHomeHeader = () => {
 const ProductCat = () => {
   const [selectedTab, setSelectedTab] = useState(0);
 
-  const handleTabChange = (event,newValue) => {
+  const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
 
-   return (
-  /* Tabs for Course Categories */
-  <Box sx={{ display: "flex", alignItems: "center", justifyContent:'center', mb: 2 }}>
-    <Tabs
-      value={selectedTab}
-      onChange={handleTabChange} 
-      textColor="inherit"
-      sx={{
-        '& .MuiTabs-indicator': {
-          backgroundColor: '#6524D3',
-        },
-        '& .Mui-selected': {
-          color: '#6524D3', // Text color for selected tab
-        },
-      }}
-    >
-      <Tab label="All Courses" disableRipple/>
-      <Tab label="PMP 2024" disableRipple/>
-      <Tab label="PMP 2024" disableRipple/>
-      <Tab label="PMP 2024" disableRipple/>
-    </Tabs>
-  </Box>
+  return (
+    /* Tabs for Course Categories */
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: 'center', mb: 2 }}>
+      <Tabs
+        value={selectedTab}
+        onChange={handleTabChange}
+        textColor="inherit"
+        sx={{
+          '& .MuiTabs-indicator': {
+            backgroundColor: '#6524D3',
+          },
+          '& .Mui-selected': {
+            color: '#6524D3', // Text color for selected tab
+          },
+        }}
+      >
+        <Tab label="All Courses" disableRipple />
+        <Tab label="PMP 2024" disableRipple />
+        <Tab label="PMP 2024" disableRipple />
+        <Tab label="PMP 2024" disableRipple />
+      </Tabs>
+    </Box>
   )
 };

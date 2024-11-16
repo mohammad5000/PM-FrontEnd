@@ -13,6 +13,7 @@ return (
     <DocumentHeadTags {...props} />
     </Head >
     <body className="antialiased">
+      
       <Main />
       <NextScript />
     </body>

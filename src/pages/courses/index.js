@@ -1,3 +1,5 @@
+
+
 import ProductCollection from "@/components/collections/productcollection";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -15,6 +17,7 @@ import { Pagination, Select } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import MainLayout from "@/layout/MainLayout";
 
 const theme = createTheme({
   palette: {
@@ -68,7 +71,8 @@ export default function Courses({}) {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      <MainLayout>
       <CoursesHeader />
       <Container sx={{ marginY: 10 }} disableGutters>
         <Container>
@@ -130,7 +134,13 @@ export default function Courses({}) {
           />
         </ThemeProvider>
       </Container>
-      <Footer />
+      </MainLayout>
+      {/* <Footer /> */}
     </>
   );
 }
+
+
+// Courses.getLayout = (page) => {
+//   return <MainLayout>{page}</MainLayout>;
+// };
