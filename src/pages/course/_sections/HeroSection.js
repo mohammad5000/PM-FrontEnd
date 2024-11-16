@@ -42,7 +42,7 @@ export default function HeroCourse({
               alignItems: { xs: "start", md: "center" },
             }}
           >
-            <StarRating rating={4.5} />{" "}
+            <StarRating allowChange={false} rating={4.5} />{" "}
             <Typography variant="p">
               {"( 8000 rating )  104,329 students"}
             </Typography>

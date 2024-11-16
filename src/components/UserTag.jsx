@@ -22,7 +22,7 @@ const UserTag = ({ userImage ="https://cdn.iconscout.com/icon/free/png-256/free-
 
         }}
       />
-      <Typography variant="body1" sx={{ marginTop: '8px', fontWeight: 'bold' }}>
+      <Typography variant="body1" sx={{ marginTop: '8px', fontWeight: 'bold' ,overflow:"hidden",textOverflow:"ellipsis" }}>
         {userName}
       </Typography>
     </Box>

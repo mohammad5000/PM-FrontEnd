@@ -1,8 +1,7 @@
 import ContactForm from "@/components/Contact";
 import { Box, Container, Typography } from "@mui/material";
 import AboutHeader from "./_sections/AboutHeader";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import VisionSection from "./_sections/VisionSection";
 import MissionSection from "./_sections/MissionSection";
 import CEOSection from "./_sections/CEO";
