@@ -13,7 +13,7 @@ export default function SectionTabs({ tabData = [{ tabName: "tab1", TabContent: 
 
   // Styling for active tabs
   const tabClasses = (tabValue) => 
-    `mx-2 text-white focus:bg-white focus:text-[#6524D3] ${activeTab === tabValue ? 'rounded-xl bg-white text-[#6524D3] border-white opacity-100' : 'opacity-50'} transition-opacity duration-300 ease-in-out`;
+    `mx-2 text-white focus:bg-white focus:text-[#6524D3] ${activeTab === tabValue ? 'rounded-xl bg-white text-[#6524D3] border-white opacity-100 t' : 'opacity-100'} transition-opacity duration-300 ease-in-out`;
 
   return (
     <Box sx={{ width: '100%' }}>
