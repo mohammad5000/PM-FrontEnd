@@ -21,7 +21,7 @@ export default function Freevideos() {
               variant="h3"
               className=" font-bold mt-[20vh] text-[48px] max-w-[750px]"
             >
-              Investing in yourself doesn't always have to come at a cost
+              Investing in yourself does not always have to come at a cost
             </Typography>
             <br />
             <Typography
