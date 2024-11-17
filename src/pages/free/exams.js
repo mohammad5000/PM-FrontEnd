@@ -1,11 +1,44 @@
+import { useState } from 'react';
+
 import MainLayout from "@/layout/MainLayout";
-import { Box, Button, Container, Divider, Stack, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Button, Container, Divider, Stack, Typography } from "@mui/material";
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import Image from "next/image";
+import HeroSectionPrime from "@/components/HeroSectionPrime";
+import Link from "next/link";
+import SingleChoise from "./_QuistionAnswers/SingleChoise";
 
 export default function Freeexam() {
+    const [ShowCorrectAnswer, setShowCorrectAnswer] = useState(false)
     return (
         <MainLayout>
+            <HeroSectionPrime
+                bgColor={"rgba(101, 36, 211, 0.27)"}
+                content={
+                    <div className="h-screen py-5">
+                        <Breadcrumbs aria-label="breadcrumb">
+                            <Link href={"#"}> Home </Link>
+                            <Link href={"#"}> Free Vedios </Link>
+                        </Breadcrumbs>
+
+                        <Typography
+                            variant="h3"
+                            className=" font-bold mt-[20vh] text-[48px] max-w-[750px]"
+                        >
+                            Investing in yourself doesn't always have to come at a cost
+                        </Typography>
+                        <br />
+                        <Typography
+                            variant="body2"
+                            className=" mt-[10vh] max-w-[750px] text-[20px]"
+                        >
+                            We have created a number of free courses to aid and support your
+                            growth throughout your career. Refresh your skills or explore new
+                            areas of learning to better adapt in our ever-evolving profession.
+                        </Typography>
+                    </div>
+                }
+            />
             <Container className="min-h-screen flex items-center justify-center">
                 <Box sx={{
                     border: "2px solid #6524D3",
@@ -56,8 +89,12 @@ export default function Freeexam() {
                             </Box>
 
                         </Box>
-                        <Box>
-                            
+                        <Box className="my-5">
+                            <SingleChoise
+                            showAnswer={ShowCorrectAnswer}
+                                answers={['first', 'second', 'third']}
+                                correct="second"
+                            />
                         </Box>
                         <Divider />
 
@@ -65,23 +102,25 @@ export default function Freeexam() {
 
                     <Stack direction={"row"} className="flex items-center justify-between p-5">
 
-                            <Button variant="contained" size="large" className="bg-[#6524D3] w-32">
-                                previous
-                            </Button>
-
-                      
-                            <Button variant="contained" size="large" sx={{
-                                backgroundColor:"white",
-                                border:"2px solid #6524D3 ",
-                                color:"#6524D3"
-                            }} >
-                                Show Answer
-                            </Button>
+                        <Button variant="contained" size="large" className="bg-[#6524D3] w-32">
+                            previous
+                        </Button>
 
 
-                            <Button variant="contained" size="large" className="bg-[#6524D3] w-32">
-                                next
-                            </Button>
+                        <Button variant="contained" size="large" sx={{
+                            backgroundColor: "white",
+                            border: "2px solid #6524D3 ",
+                            color: "#6524D3"
+                        }} 
+                        onClick={()=>setShowCorrectAnswer(!ShowCorrectAnswer)}
+                        >
+                            Show Answer
+                        </Button>
+
+
+                        <Button variant="contained" size="large" className="bg-[#6524D3] w-32">
+                            next
+                        </Button>
 
                     </Stack>
                 </Box>

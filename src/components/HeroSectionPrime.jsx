@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 import Image from "next/image";
 /**
  *
@@ -66,13 +66,18 @@ export default function HeroSectionPrime({
             sx={{
               display: "flex", // flex
               flexDirection: "column", // flex-col
+              width:"100%"
             }}
+            // className="bg-red-400"
           >
+            <Container>
+              
             <Box
               variant="div" // Sets the Box variant to h2
               sx={{
                 fontFamily: "hookrideFont", // Custom font family
-                width: { xs: "100%", md: "100%" }, // Responsive width: 100% on small screens, 60% on medium and larger screens
+                width: { xs: "100%", md: "100%" } // Responsive width: 100% on small screens, 60% on medium and larger screens
+              
               }}
             >
               {title}
@@ -88,6 +93,7 @@ export default function HeroSectionPrime({
             >
               {content}
             </Box>
+            </Container>
           </Box>
           {SideImage && (
             <Box
@@ -111,6 +117,8 @@ export default function HeroSectionPrime({
           )}
         </Box>
 
+
+        {imgSrc && (
         <Box
           sx={{
             width: "100%",
@@ -147,6 +155,7 @@ export default function HeroSectionPrime({
             priority // Optionally set to load this image first
           />
         </Box>
+        )}
       </Box>
     </>
   );
