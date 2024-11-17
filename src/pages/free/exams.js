@@ -7,6 +7,7 @@ import Image from "next/image";
 import HeroSectionPrime from "@/components/HeroSectionPrime";
 import Link from "next/link";
 import SingleChoise from "./_QuistionAnswers/SingleChoise";
+import MultipleChoice from './_QuistionAnswers/MultibleChoise';
 
 export default function Freeexam() {
     const [ShowCorrectAnswer, setShowCorrectAnswer] = useState(false)
@@ -39,6 +40,8 @@ export default function Freeexam() {
                     </div>
                 }
             />
+
+            <br/>
             <Container className="min-h-screen flex items-center justify-center">
                 <Box sx={{
                     border: "2px solid #6524D3",
@@ -90,10 +93,16 @@ export default function Freeexam() {
 
                         </Box>
                         <Box className="my-5">
-                            <SingleChoise
+                            {/* <SingleChoise
                             showAnswer={ShowCorrectAnswer}
                                 answers={['first', 'second', 'third']}
                                 correct="second"
+                            /> */}
+
+                            <MultipleChoice 
+                            answers={["Option 1", "Option 2", "Option 3", "Option 4"]}
+                            correct={["Option 1", "Option 3"]}
+                            showAnswer={ShowCorrectAnswer}
                             />
                         </Box>
                         <Divider />
