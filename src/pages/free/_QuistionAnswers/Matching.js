@@ -6,11 +6,6 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const ItemType = "MATCH_ITEM";
 
-const correctAnswers = [
-  { id: 1, question: "Apple", answer: "Fruit A" },
-  { id: 2, question: "Banana", answer: "Fruit B" },
-  { id: 3, question: "Cherry", answer: "Fruit C" },
-];
 
 const shuffleArray = (array) => {
   let shuffledArray = [...array];
@@ -21,12 +16,14 @@ const shuffleArray = (array) => {
   return shuffledArray;
 };
 
-export default function MatchingQuestion() {
+export default function MatchingQuestion({showAnswers = false,correctAnswers=[
+  { id: 1, question: "Apple", answer: "Fruit A" },
+  { id: 2, question: "Banana", answer: "Fruit B" },
+  { id: 3, question: "Cherry", answer: "Fruit C" },
+]}) {
   const [leftItems, setLeftItems] = useState([]);
   const [rightItems, setRightItems] = useState([]);
   const [matches, setMatches] = useState([]);
-  const [showAnswers, setShowAnswers] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
 
   useEffect(() => {
     const shuffledAnswers = shuffleArray(correctAnswers);
@@ -35,8 +32,9 @@ export default function MatchingQuestion() {
   }, []);
 
   useEffect(() => {
-    console.log(matches);
-  }, [matches]);
+    showCorrectAnswers()
+
+  }, [showAnswers]);
 
   const handleDrop = (draggableId, droppableId) => {
     setMatches(prev => {
@@ -68,22 +66,23 @@ export default function MatchingQuestion() {
     });
   };
 
-  const checkAnswers = () => {
-    const isAllCorrect = matches.every(match =>
-      correctAnswers.some(answer => answer.question === match.Question && answer.answer === match.customerAnswer)
-    );
-    setIsCorrect(isAllCorrect);
-    alert(isAllCorrect ? "Correct!" : "Try Again!");
-  };
+
 
   const showCorrectAnswers = () => {
-    setShowAnswers(true);
-    const correctMatches = correctAnswers.map(answer => ({
-      Question: answer.question,
-      customerAnswer: answer.answer,
-    }));
-    setMatches(correctMatches);
+    if (showAnswers){
+      const correctMatches = correctAnswers.map(answer => ({
+        Question: answer.question,
+        customerAnswer: answer.answer,
+      }));
+      setMatches(correctMatches);
+    }
+    else{
+   
+      setMatches([]);
+    }
   };
+
+  
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -136,17 +135,6 @@ export default function MatchingQuestion() {
             )}
           </Grid>
         </Grid>
-        <Button variant="contained" onClick={checkAnswers} sx={{ mt: 2 }}>
-          Check Answers
-        </Button>
-        <Button variant="contained" onClick={showCorrectAnswers} sx={{ mt: 2, ml: 2 }}>
-          Show Answers
-        </Button>
-        {matches.length > 0 && (
-          <Typography variant="body1" sx={{ mt: 2 }}>
-            {isCorrect ? "Correct!" : "Incorrect, please try again."}
-          </Typography>
-        )}
       </Container>
     </DndProvider>
   );
