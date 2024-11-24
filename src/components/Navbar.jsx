@@ -43,10 +43,10 @@ const NavbarTop = ({ langs }) => {
         {/* Left side - Logo */}
         <Link href="/">
           <Image
-            src="/assets/Images/Logo.png"
+            src="/assets/Images/Logo_nav.png"
             alt="PM Academy Logo"
-            width={75}
-            height={75}
+            width={150}
+            height={150}
             style={{ borderRadius: "2px", marginLeft: "10%" }}
           />
         </Link>

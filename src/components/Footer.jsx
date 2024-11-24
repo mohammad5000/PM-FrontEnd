@@ -27,10 +27,10 @@ export default function Footer() {
           <Grid item xs={12} md={3}>
             <Box display="flex" flexDirection="column" alignItems="flex-start">
               <Image
-                src="/assets/Images/Logo.png"
+                src="/assets/Images/Logo_nav.png"
                 alt="PM Academy Logo"
-                width={125}
-                height={125}
+                width={175}
+                height={175}
                 style={{ borderRadius: "8px" }}
               />
               <Typography
@@ -191,9 +191,10 @@ export default function Footer() {
               Nunc vulputate libero et velit interdum,
               <br /> ac aliquet odio mattis.
             </Typography>
-            <Box display="flex" flexDirection="column" alignItems="flex-start">
+            <Box display="flex" flexDirection="row" alignItems="flex-start" justifyContent={"space-between"}>
               <IconButton
                 color="inherit"
+                className="me-2"
                 sx={{
                   mb: 2,
                   transition: "0.3s",
@@ -208,7 +209,7 @@ export default function Footer() {
               >
                 <AppleIcon />
                 <Typography variant="body2" sx={{ ml: 1 }}>
-                  Download the app
+                  App Store
                 </Typography>
               </IconButton>
               <IconButton
@@ -227,7 +228,7 @@ export default function Footer() {
               >
                 <GoogleIcon />
                 <Typography variant="body2" sx={{ ml: 1 }}>
-                  Get it now
+                  Google Play
                 </Typography>
               </IconButton>
             </Box>
