@@ -95,6 +95,7 @@ Home.getLayout = (page) => {
 
 // -----------------------------------------------------------
 
+
 function WhyUsSection() {
   const CircledInfo = ({
     ImageSource = "/assets/Images/defultImage.png",
@@ -133,20 +134,23 @@ function WhyUsSection() {
           className="w-full h-full object-cover drop-shadow-3xl"
         />
       </Box>
-      <Typography variant="h6" sx={{ color: "white" }}>
+      <Typography
+        className="pb-10"
+        variant="h6"
+        sx={{ color: "white", fontSize: { xs: '1rem', md: '1.5rem' } }} // Responsive font size
+      >
         {Text}
       </Typography>
-      {/* <h3 className="text-white">{Text}</h3> */}
     </Stack>
   );
 
   return (
     <div className="flex flex-col items-center justify-center bg-gradient-to-b from-[#6524D3] to-[#007DA5] text-white text-center md:px-[144px] py-5">
       <Stack direction="column" sx={{ color: "white", width: "100%", pb: 10 }}>
-        <Typography variant="h4" sx={{ color: "white" }}>
+        <Typography variant="h4" sx={{ color: "white", fontSize: { xs: '1.5rem', md: '2.5rem' } }}>
           Why Study With Us?
         </Typography>
-        <Typography variant="p" sx={{ color: "white" }}>
+        <Typography variant="body1" sx={{ color: "white", fontSize: { xs: '1rem', md: '1.25rem' } }}>
           Why Study With Us?
         </Typography>
       </Stack>
@@ -156,7 +160,7 @@ function WhyUsSection() {
         sx={{
           width: "100%",
           display: "flex",
-          flexDirection: { xs: "column", md: "row" }, // Column on small screens, row on medium and larger screens
+          flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           justifyContent: "space-between",
         }}
@@ -184,10 +188,10 @@ function WhyUsSection() {
         direction="column"
         sx={{ color: "white", width: "100%", pb: 5 }}
       >
-        <Typography variant="h4" sx={{ color: "white" }}>
+        <Typography variant="h4" sx={{ color: "white", fontSize: { xs: '1.5rem', md: '2.5rem' } }}>
           What Customers Says
         </Typography>
-        <Typography variant="p" sx={{ color: "white" }}>
+        <Typography variant="body1" sx={{ color: "white", fontSize: { xs: '1rem', md: '1.25rem' } }}>
           Our Happy Customer says about us
         </Typography>
       </Stack>
@@ -197,20 +201,22 @@ function WhyUsSection() {
         sx={{
           width: "100%",
           display: "flex",
-          flexDirection: { xs: "column", md: "row" }, // Column on small screens, row on medium and larger screens
+          flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent:   { xs: "center", md: "space-between" },
+          paddingInline:"10px"
         }}
       >
-        {reviews.map((review, index) => {
-             return(
-              <CustomerReview key={index} Review={review}/>
-             )
-        })}
+<br/>
+        {reviews.map((review, index) => (
+          <><CustomerReview key={index} Review={review} /><br className="md:hidden"/></>
+          
+        ))}
       </Stack>
     </div>
   );
 }
+
 
 const ProductHomeHeader = () => {
   return (
