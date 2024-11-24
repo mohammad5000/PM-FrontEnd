@@ -112,6 +112,7 @@ const NavbarTop = ({ langs }) => {
 
 const NavbarBottom = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl2, setAnchorEl2] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const router = useRouter();
@@ -120,21 +121,27 @@ const NavbarBottom = () => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleCategoriesClose = () => {
     setAnchorEl(null);
+  };
+  const handleFreeClick = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+
+  const handleFreeClose = () => {
+    setAnchorEl2(null);
   };
 
   const handleMobileMenuToggle = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-
   return (
     <AppBar
       position="static"
       color="transparent"
       elevation={0}
-      sx={{ borderBottom: "1px solid #E0E0E0", backgroundColor: "#EAEAEA" }}
+      sx={{ borderBottom: "1px solid #E0E0E0", backgroundColor: "#EAEAEA" , height: {md:"55px"}, justifyContent: "center" }}
     >
       <Toolbar sx={{ justifyContent: "space-between", flexDirection: "row" }}>
         {/* Desktop Menu */}
@@ -154,39 +161,45 @@ const NavbarBottom = () => {
           <Menu
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
-            onClose={handleClose}
+            onClose={handleCategoriesClose}
             anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
             transformOrigin={{ vertical: "top", horizontal: "left" }}
             MenuListProps={{ disablePadding: true }}
-            sx={{'&.MuiMenuList-padding	':0}} 
+            sx={{ "&.MuiMenuList-padding	": 0 }}
           >
             <MenuItem
-              sx={{ backgroundColor: "#6524D3", color: "white" , 
-                '&:hover':{
+              sx={{
+                backgroundColor: "#6524D3",
+                color: "white",
+                "&:hover": {
                   backgroundColor: "#4B01D6",
-                }
+                },
               }}
-              
-              onClick={handleClose}
+              onClick={handleCategoriesClose}
             >
               Category 1
             </MenuItem>
             <MenuItem
-              sx={{ backgroundColor: "#6524D3", color: "white" , 
-                '&:hover':{
+              sx={{
+                backgroundColor: "#6524D3",
+                color: "white",
+                "&:hover": {
                   backgroundColor: "#4B01D6",
-                } }}
-              onClick={handleClose}
+                },
+              }}
+              onClick={handleCategoriesClose}
             >
               Category 2
             </MenuItem>
             <MenuItem
-              sx={{ backgroundColor: "#6524D3", color: "white", 
-                '&:hover':{
+              sx={{
+                backgroundColor: "#6524D3",
+                color: "white",
+                "&:hover": {
                   backgroundColor: "#4B01D6",
-                }
+                },
               }}
-              onClick={handleClose}
+              onClick={handleCategoriesClose}
             >
               Category 3
             </MenuItem>
@@ -206,8 +219,8 @@ const NavbarBottom = () => {
               textTransform: "none",
               color: "black",
               fontWeight: "bold",
-              height: "64px",
-              padding: "0 25px",
+              height: "54px",
+              padding: "0 20px",
               "&:hover": {
                 backgroundColor: "#6524D3",
                 color: "white",
@@ -215,7 +228,6 @@ const NavbarBottom = () => {
             }}
           >
             Home
-            
           </Button>
           <Button
             href="/courses"
@@ -225,8 +237,8 @@ const NavbarBottom = () => {
               textTransform: "none",
               color: "black",
               fontWeight: "bold",
-              height: "64px",
-              padding: "0 25px",
+              height: "54px",
+              padding: "0 20px",
               "&:hover": {
                 backgroundColor: "#6524D3",
                 color: "white",
@@ -236,15 +248,15 @@ const NavbarBottom = () => {
             Courses
           </Button>
           <Button
-            href="/free/videos"
-            component={Link}
             className={router.pathname === "/free/video" ? "current" : ""}
+            onClick={handleFreeClick}
+            endIcon={<ArrowDropDownIcon />}
             sx={{
               textTransform: "none",
               color: "black",
               fontWeight: "bold",
-              height: "64px",
-              padding: "0 25px",
+              height: "54px",
+              padding: "0 20px",
               "&:hover": {
                 backgroundColor: "#6524D3",
                 color: "white",
@@ -253,6 +265,61 @@ const NavbarBottom = () => {
           >
             Free Resources
           </Button>
+          <Menu
+            anchorEl={anchorEl2}
+            open={Boolean(anchorEl2)}
+            onClose={handleFreeClose}
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            transformOrigin={{ vertical: "top", horizontal: "center" }}
+            MenuListProps={{ disablePadding: true }}
+            sx={{
+              "&.MuiMenuList-padding	": 0,
+              "& .MuiPaper-root": {
+                minWidth: "170px", // Dynamically set width based on Button
+              },
+            }}
+          >
+            <MenuItem
+              href="/free/videos"
+              component={Link}
+              sx={{
+                backgroundColor: "#EAEAEA",
+                color: "black",
+                height: "44px",
+                fontSize: "15px",
+                fontWeight: "bold",
+                textAlign: "center",
+                justifyContent: "center",
+                "&:hover": {
+                  backgroundColor: "#6524D3",
+                  color: "white",
+                },
+              }}
+              onClick={handleFreeClose}
+            >
+              Free Videos
+            </MenuItem>
+            <MenuItem
+              href="/free/exams"
+              component={Link}
+              sx={{
+                backgroundColor: "#EAEAEA",
+                color: "black",
+                fontSize: "15px",
+                fontWeight: "bold",
+                height: "44px",
+                textAlign: "center",
+                justifyContent: "center",
+                "&:hover": {
+                  backgroundColor: "#6524D3",
+                  color: "white",
+                },
+              }}
+              onClick={handleFreeClose}
+            >
+              Free Exams
+            </MenuItem>
+          </Menu>
           <Button
             href="/about"
             component={Link}
@@ -261,8 +328,8 @@ const NavbarBottom = () => {
               textTransform: "none",
               color: "black",
               fontWeight: "bold",
-              height: "64px",
-              padding: "0 25px",
+              height: "54px",
+              padding: "0 20px",
               "&:hover": {
                 backgroundColor: "#6524D3",
                 color: "white",
@@ -286,8 +353,9 @@ const NavbarBottom = () => {
         <Box
           display={{ xs: "flex", md: "none" }}
           flexDirection="column"
-          bgcolor="background.paper"
+          bgcolor="#EAEAEA"
           p={2}
+
         >
           <Button
             href="/"
@@ -304,8 +372,8 @@ const NavbarBottom = () => {
             Courses
           </Button>
           <Button
-            href="/free/videos"
-            component={Link}
+            onClick={handleFreeClick}
+            endIcon={<ArrowDropDownIcon />}
             sx={{ textTransform: "none", color: "black", fontWeight: "bold" }}
           >
             Free Resources
