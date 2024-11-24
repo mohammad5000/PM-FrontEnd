@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Dialog, DialogContent, IconButton, Box, Button } from "@mui/material";
+import { Dialog, DialogContent, IconButton, Box } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import PlayCircleFilledWhiteIcon from "@mui/icons-material/PlayCircleFilledWhite";
-
 
 export default function VideoPopup({ video }) {
   const [open, setOpen] = useState(false);
@@ -11,9 +10,8 @@ export default function VideoPopup({ video }) {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box>
-      {/* Trigger (thumbnail or button) */}
-
+    <>
+      {/* Trigger Button */}
       <IconButton
         onClick={handleOpen}
         size="large"
@@ -21,12 +19,19 @@ export default function VideoPopup({ video }) {
       >
         <PlayCircleFilledWhiteIcon fontSize="large" />
       </IconButton>
+
       {/* Popup Modal */}
       <Dialog
         open={open}
-        maxWidth={"xl"}
+        maxWidth="xl"
         onClose={handleClose}
         fullWidth={true}
+        PaperProps={{
+          style: {
+            backgroundColor: "transparent", // Makes background transparent if needed
+            boxShadow: "none",
+          },
+        }}
       >
         <DialogContent style={{ position: "relative", padding: "0" }}>
           {/* Close Button */}
@@ -42,17 +47,33 @@ export default function VideoPopup({ video }) {
           >
             <CloseIcon />
           </IconButton>
-          {/* Video Player */}
-          <iframe
-            width="100%"
-            height="800"
-            src={`https://www.youtube.com/embed/${video}`} // Replace with your video URL
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+
+          {/* Responsive Video Wrapper */}
+          <Box
+            sx={{
+              position: "relative",
+              width: "100%",
+              paddingTop: "56.25%", // 16:9 aspect ratio
+              backgroundColor: "black",
+            }}
+          >
+            {/* Video */}
+            <iframe
+              src={`https://www.youtube.com/embed/${video}`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+              }}
+            ></iframe>
+          </Box>
         </DialogContent>
       </Dialog>
-    </Box>
+    </>
   );
 }
