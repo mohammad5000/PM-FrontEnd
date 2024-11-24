@@ -36,9 +36,6 @@ const AccordionSummary = styled((props) => (
     '& .MuiAccordionSummary-content': {
         marginLeft: theme.spacing(1),
     },
-    ...theme.applyStyles('dark', {
-        backgroundColor: 'rgba(255, 255, 255, .05)',
-    }),
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
@@ -46,77 +43,66 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-export default function CustomizedAccordions({mainTopic, accordionData }) {
+export default function CustomizedAccordions({ mainTopic, accordionData }) {
     const [expanded, setExpanded] = React.useState(0);
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
 
-
     const handleColor = (field) => {
-        console.log('Received field value:', field);  // Log the received field value
         const colorMap = {
-          "Business Environment": "#6524D3",
-          "People": "#F65D11",
-          "Resource": '#10B8D9',
+            "Business Environment": "#6524D3",
+            "resource": "#1CBBDA", 
+            "People": "#F65D11",
         };
-        
-        const normalizedField = field.trim(); // Trim leading/trailing spaces
-      
 
-        return colorMap[normalizedField] || "#000000"; // Default color if field is not found
-      };
-      
-    
+        const normalizedField = field.trim();
+        return colorMap[normalizedField] || "#000000";
+    };
+
     const HandleIcon = ({ type, field }) => {
         const color = handleColor(field);
-      console.log(color)
         let IconComponent;
-      
-        // Set the correct icon component based on the 'type' prop
-        if (type === "video") {
-          IconComponent = <VideoLibraryIcon color={color} sx={{fontSize:"20px"}}/>;
-        } else if (type === "article") {
-          IconComponent = <LibraryBooksIcon color={color} sx={{fontSize:"20px"}}/>;
-        } else if (type === "material") {
-          IconComponent = <DownloadForOfflineIcon color={color} sx={{fontSize:"20px"}}/>;
-        } else {
-          // Default icon if type doesn't match
-          IconComponent = <Icon3 color={color} />;
-        }
-      
-        return (
-          <span className={`text-[${color}]`}>
-            {IconComponent}
-          </span>
-        );
-      };
 
+        if (type === "video") {
+            IconComponent = <VideoLibraryIcon sx={{ fontSize: "20px", color: color }} />;
+        } else if (type === "article") {
+            IconComponent = <LibraryBooksIcon sx={{ fontSize: "20px", color: color }} />;
+        } else if (type === "material") {
+            IconComponent = <DownloadForOfflineIcon sx={{ fontSize: "20px", color: color }} />;
+        } else {
+            IconComponent = <span style={{ color: color }}>Default Icon</span>;
+        }
+
+        return (
+            <span style={{ color: color }}>
+                {IconComponent}
+            </span>
+        );
+    };
 
     return (
         <Container>
-              <Box className="bg-[#6524D3] p-4">
-                           <Typography color='white' fontWeight={"bold"} variant='h6'>{mainTopic}</Typography> 
-                        </Box>
+            <Box className="bg-[#6524D3] p-4">
+                <Typography color='white' fontWeight={"bold"} variant='h6'>{mainTopic}</Typography>
+            </Box>
             {accordionData && accordionData.length > 0 ? (
                 accordionData.map((item) => (
-                    
                     <Accordion
                         key={item.id}
                         expanded={expanded === item.id}
                         onChange={handleChange(item.id)}
                         sx={{
-                            border : '1px solid #6524D3',
-                            backgroundColor:"white"
+                            border: '1px solid #6524D3',
+                            backgroundColor: "white"
                         }}
                     >
- 
-                        <AccordionSummary  aria-controls={`${item.id}-content`} id={`${item.id}-header`}
-                        sx={{
-                            borderBottom : '1px solid #6524D3',
-                            backgroundColor:"white" 
-                        }}
+                        <AccordionSummary aria-controls={`${item.id}-content`} id={`${item.id}-header`}
+                            sx={{
+                                borderBottom: '1px solid #6524D3',
+                                backgroundColor: "white"
+                            }}
                         >
                             <Typography>{item.Topic}</Typography>
                         </AccordionSummary>
@@ -125,9 +111,7 @@ export default function CustomizedAccordions({mainTopic, accordionData }) {
                                 <ul>
                                     {item.content.map((contentItem) => (
                                         <li key={contentItem.id}>
-                                            {/* Optionally render icons or styles based on 'type' */}
-                                            <HandleIcon type={contentItem.type} field={contentItem.field}/> {contentItem.text} 
-                                  
+                                            <HandleIcon type={contentItem.type} field={contentItem.field} /> {contentItem.text}
                                         </li>
                                     ))}
                                 </ul>
@@ -138,9 +122,7 @@ export default function CustomizedAccordions({mainTopic, accordionData }) {
                                     <Typography variant="body2" color="textSecondary">No content available for this section.</Typography>
                                 )
                             )}
-
                         </AccordionDetails>
-
                     </Accordion>
                 ))
             ) : (
