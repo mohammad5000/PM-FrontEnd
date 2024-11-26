@@ -217,7 +217,7 @@ export default function Freeexam() {
       return newAnswers;
     });
   }
-  
+
   const handleMultipleUserAnswers = (answer) => {
     setUserAnswers((prevAnswers) => {
         const newAnswers = [...prevAnswers];
