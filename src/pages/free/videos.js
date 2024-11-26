@@ -15,8 +15,8 @@ export default function Freevideos() {
         content={
           <div className="h-screen py-5">
             <Breadcrumbs aria-label="breadcrumb">
-              <Link href={"#"}> Home </Link>
-              <Link href={"#"}> Free Vedios </Link>
+              <Link href={"/"}> Home </Link>
+              <Link href={"/free/video"}> Free Videos </Link>
             </Breadcrumbs>
 
             <Typography

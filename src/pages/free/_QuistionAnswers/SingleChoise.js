@@ -16,7 +16,7 @@ const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />
 );
 
 const CustomRadio = styled((props) => <Radio {...props} />)(({ theme }) => ({
-    color: '#fff',
+    color: 'black',
     '&.Mui-checked': {
         color: '#fff',
     },
@@ -48,13 +48,18 @@ MyFormControlLabel.propTypes = {
     onChange: PropTypes.func,
 };
 
-export default function SingleChoice({ answers = [], correct = "", showAnswer = false }) {
+export default function SingleChoice({ answers = [], correct = "", showAnswer = false, saveUserAnswer , selectedAnswer = "" }) {
     // State to manage the selected answer
-    const [selectedValue, setSelectedValue] = useState("");
+    const [selectedValue, setSelectedValue] = useState(selectedAnswer);
     const [items, setItems] = useState(answers);
 
     const handleChange = (event) => {
-        setSelectedValue(event.target.value);
+        const value = event.target.value;
+        setSelectedValue(value) ;
+
+        if (value && saveUserAnswer) {
+            saveUserAnswer(value);
+          }
     };
 
     const shuffleArray = (array) => {
@@ -119,4 +124,5 @@ export default function SingleChoice({ answers = [], correct = "", showAnswer = 
 SingleChoice.propTypes = {
     answers: PropTypes.arrayOf(PropTypes.string),
     correct: PropTypes.string,
+    onCorrectAnswer: PropTypes.func,
 };

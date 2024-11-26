@@ -46,70 +46,76 @@ MyFormControlLabel.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default function MultipleChoice({ answers = [], correct = [], showAnswer = false }) {
-  // State to manage the selected answers
-  const [selectedValues, setSelectedValues] = useState([]);
-  const [items, setItems] = useState(answers);
+  export default function MultipleChoice({ answers = [], correct = [], showAnswer = false , selectedAnswer = [], saveUserAnswer }) {
+    // State to manage the selected answers
+    const [selectedValues, setSelectedValues] = useState(selectedAnswer);
+    const [items, setItems] = useState(answers);
 
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setSelectedValues((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
-    );
-  };
-
-  const shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+    const handleChange = (event) => {
+      const value = event.target.value;
+      const updatedSelectedValues = selectedValues.includes(value)
+      ? selectedValues.filter((v) => v !== value)
+      : [...selectedValues, value];
+  
+    setSelectedValues(updatedSelectedValues);
+  
+    if (saveUserAnswer) {
+      saveUserAnswer(updatedSelectedValues); // Use the updated values
     }
-    return array;
-  };
+    };
 
-  useEffect(() => {
-    const shuffledItems = shuffleArray([...items]);
-    setItems(shuffledItems);
-  }, []);
+    const shuffleArray = (array) => {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    };
 
-  return (
-    <Container className='w-full flex flex-col'>
-      {items.map((answer, index) => {
-        const isCorrect = correct.includes(answer);
-        const isSelected = selectedValues.includes(answer);
+    useEffect(() => {
+      const shuffledItems = shuffleArray([...items]);
+      setItems(shuffledItems);
+    }, []);
 
-        // Define background color based on selection and correctness
-        let labelStyle = {
-          border: "1px solid #6524D3",
-          backgroundColor: showAnswer
-            ? isCorrect
-              ? 'green'
+    return (
+      <Container className='w-full flex flex-col'>
+        {items.map((answer, index) => {
+          const isCorrect = correct.includes(answer);
+          const isSelected = selectedValues.includes(answer);
+
+          // Define background color based on selection and correctness
+          let labelStyle = {
+            border: "1px solid #6524D3",
+            backgroundColor: showAnswer
+              ? isCorrect
+                ? 'green'
+                : isSelected
+                  ? 'red'
+                  : ''
               : isSelected
-                ? 'red'
-                : ''
-            : isSelected
-              ? '#6524D3'
-              : '',
-          color: showAnswer && (isCorrect || isSelected) ? 'white' : isSelected ? 'white' : '',
-        };
+                ? '#6524D3'
+                : '',
+            color: showAnswer && (isCorrect || isSelected) ? 'white' : isSelected ? 'white' : '',
+          };
 
-        return (
-          <MyFormControlLabel
-            key={index}
-            value={answer}
-            label={answer}
-            checked={isSelected}
-            onChange={handleChange}
-            style={labelStyle} // Apply dynamic styling
-            className="py-2"
-          />
-        );
-      })}
-    </Container>
-  );
-}
+          return (
+            <MyFormControlLabel
+              key={index}
+              value={answer}
+              label={answer}
+              checked={isSelected}
+              onChange={handleChange}
+              style={labelStyle} // Apply dynamic styling
+              className="py-2"
+            />
+          );
+        })}
+      </Container>
+    );
+  }
 
-MultipleChoice.propTypes = {
-  answers: PropTypes.arrayOf(PropTypes.string),
-  correct: PropTypes.arrayOf(PropTypes.string),
-  showAnswer: PropTypes.bool,
-};
+  MultipleChoice.propTypes = {
+    answers: PropTypes.arrayOf(PropTypes.string),
+    correct: PropTypes.arrayOf(PropTypes.string),
+    showAnswer: PropTypes.bool,
+  };
