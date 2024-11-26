@@ -20,10 +20,10 @@ export default function MatchingQuestion({showAnswers = false,correctAnswers=[
   { id: 1, question: "Apple", answer: "Fruit A" },
   { id: 2, question: "Banana", answer: "Fruit B" },
   { id: 3, question: "Cherry", answer: "Fruit C" },
-]}) {
+],selectedAnswer = [], saveUserAnswer}) {
   const [leftItems, setLeftItems] = useState([]);
   const [rightItems, setRightItems] = useState([]);
-  const [matches, setMatches] = useState([]);
+  const [matches, setMatches] = useState(selectedAnswer);
 
   useEffect(() => {
     const shuffledAnswers = shuffleArray(correctAnswers);
@@ -35,6 +35,13 @@ export default function MatchingQuestion({showAnswers = false,correctAnswers=[
     showCorrectAnswers()
 
   }, [showAnswers]);
+
+
+  useEffect(() => {
+    if (saveUserAnswer) {
+      saveUserAnswer(matches); // Use the updated values
+    }
+  }, [matches]);
 
   const handleDrop = (draggableId, droppableId) => {
     setMatches(prev => {
@@ -62,6 +69,8 @@ export default function MatchingQuestion({showAnswers = false,correctAnswers=[
       if (matchToRemove) {
         return prev.filter(match => match.customerAnswer !== droppableId);
       }
+
+      console.log(prev)
       return prev;
     });
   };
@@ -76,9 +85,9 @@ export default function MatchingQuestion({showAnswers = false,correctAnswers=[
       }));
       setMatches(correctMatches);
     }
-    else{
-   
-      setMatches([]);
+    {
+    
+      setMatches(selectedAnswer);
     }
   };
 

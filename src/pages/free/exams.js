@@ -225,6 +225,16 @@ export default function Freeexam() {
         return newAnswers;
     });
   }
+
+  const handleUserAnswer = (answer) => {
+    setUserAnswers((prevAnswers) => {
+        const newAnswers = [...prevAnswers];
+        newAnswers[currentQuestionIndex] = answer; // Push the entire 'answer' array
+        return newAnswers;
+    });
+  }
+
+  
     
 
   useEffect(() => {
@@ -356,7 +366,7 @@ export default function Freeexam() {
                   showAnswer={showCorrectAnswer}
                   answers={currentQuestion.answers}
                   correct={currentQuestion.correct}
-                  saveUserAnswer={handleSingleUserAnswers}
+                  saveUserAnswer={handleUserAnswer}
                   selectedAnswer = {userAnswers[currentQuestionIndex]}
                 />
               )}
@@ -367,7 +377,7 @@ export default function Freeexam() {
                   answers={currentQuestion.answers}
                   correct={currentQuestion.correct}
                   showAnswer={showCorrectAnswer}
-                  saveUserAnswer={handleMultipleUserAnswers}
+                  saveUserAnswer={handleUserAnswer}
                   selectedAnswer = {userAnswers[currentQuestionIndex]}
                  
                 />
@@ -377,6 +387,8 @@ export default function Freeexam() {
                   key={currentQuestionIndex}
                   correctAnswers={currentQuestion.correctAnswers}
                   showAnswers={showCorrectAnswer}
+                  saveUserAnswer={handleUserAnswer}
+                  selectedAnswer = {userAnswers[currentQuestionIndex]}
                 />
               )}
            
