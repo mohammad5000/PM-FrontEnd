@@ -193,18 +193,37 @@ export default function Freeexam() {
   const currentQuestion = questions[currentQuestionIndex];
 
   const showResults = () => {
+    let tempResult = 0;
 
-    if (questions[currentQuestionIndex].answerType === "matching"){
-      console.log(questions[currentQuestionIndex].correctAnswers)
-      console.log("-----------------------")
-      console.log(userAnswers)
-
-      checkMatchingAnswers(questions[currentQuestionIndex].correctAnswers,userAnswers)
-    }
-    // alert(
-    //   `You have completed the exam! Result is ${result} out of ${questions.length}`
-      
-    // );
+    questions.map((question, index) => {
+      if (question.answerType === "matching") {
+        const userAnswerForIndex = userAnswers[index] || [];
+        const isCorrect = checkMatchingAnswers(
+          question.correctAnswers,
+          userAnswerForIndex
+        );
+        if (isCorrect) {
+            tempResult += 1;
+        }
+      }
+      else if (question.answerType === "single") {
+        if (question.correct === (userAnswers[index] || null)) {
+          tempResult += 1;
+        }
+      } else if (question.answerType === "multiple") {
+        const userAnswerForIndex = userAnswers[index] || []
+        const isCorrect = question.correct.every((answer) =>
+            userAnswerForIndex.includes(answer)
+        );
+        if (isCorrect) {
+          tempResult += 1;
+        }
+      }
+    });
+    setResult(tempResult); 
+    alert(
+      `You have completed the exam! Result is ${tempResult} out of ${questions.length}`
+    );
   };
 
   const handleNext = () => {
@@ -212,12 +231,9 @@ export default function Freeexam() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setShowCorrectAnswer(false);
     }
-    // if (currentQuestionIndex === questions.length - 1) {
+    if (currentQuestionIndex === questions.length - 1) {
       showResults();
-
-    // }
-    console.log(userAnswers);
-    console.log(currentQuestionIndex)
+    }
   };
 
   // const handleSingleUserAnswers = (answer) => {
@@ -236,50 +252,35 @@ export default function Freeexam() {
   //   });
   // }
 
-
-
-
   const handleUserAnswer = (answer) => {
     setUserAnswers((prevAnswers) => {
-        const newAnswers = [...prevAnswers];
-        newAnswers[currentQuestionIndex] = answer; // Push the entire 'answer' array
-        return newAnswers;
+      const newAnswers = [...prevAnswers];
+      newAnswers[currentQuestionIndex] = answer; // Push the entire 'answer' array
+      return newAnswers;
     });
-  }
-
+  };
 
   ///check result
 
-
   //matchingResult
 
-function checkMatchingAnswers(correctAnswers, userAnswers) {
-  if (correctAnswers.length !== userAnswers.length) {
-    setResult(result)
-    console.log("false")
-    return false;
-  }
-
-  const correctAnswersMap = new Map();
-  correctAnswers.forEach(({ question, answer }) => {
-    correctAnswersMap.set(question, answer);
-  });
-
-  for (let { question, answer } of userAnswers) {
-    if (correctAnswersMap.get(question) !== answer) {
-      console.log("false")
-
-      setResult(result)
-      return false;
+  function checkMatchingAnswers(correctAnswers, userAnswers) {
+    if (!userAnswers || userAnswers.length === 0) {
+      return false; // Return false for empty answers
     }
-  }
-  setResult(result+1)
-  console.log("true")
 
-  return true;
-}
-  
-    
+    const correctAnswersMap = new Map();
+    correctAnswers.forEach(({ question, answer }) => {
+      correctAnswersMap.set(question, answer);
+    });
+
+    for (let { question, answer } of userAnswers) {
+      if (correctAnswersMap.get(question) !== answer) {
+        return false; // Return false if any answer doesn't match
+      }
+    }
+    return true;
+  }
 
   useEffect(() => {
     if (questions[0] == initQuistions[0]) {
@@ -411,7 +412,7 @@ function checkMatchingAnswers(correctAnswers, userAnswers) {
                   answers={currentQuestion.answers}
                   correct={currentQuestion.correct}
                   saveUserAnswer={handleUserAnswer}
-                  selectedAnswer = {userAnswers[currentQuestionIndex]}
+                  selectedAnswer={userAnswers[currentQuestionIndex]}
                 />
               )}
 
@@ -422,8 +423,7 @@ function checkMatchingAnswers(correctAnswers, userAnswers) {
                   correct={currentQuestion.correct}
                   showAnswer={showCorrectAnswer}
                   saveUserAnswer={handleUserAnswer}
-                  selectedAnswer = {userAnswers[currentQuestionIndex]}
-                 
+                  selectedAnswer={userAnswers[currentQuestionIndex]}
                 />
               )}
               {currentQuestion.answerType === "matching" && (
@@ -432,10 +432,9 @@ function checkMatchingAnswers(correctAnswers, userAnswers) {
                   correctAnswers={currentQuestion.correctAnswers}
                   showAnswers={showCorrectAnswer}
                   saveUserAnswer={handleUserAnswer}
-                  selectedAnswer = {userAnswers[currentQuestionIndex]}
+                  selectedAnswer={userAnswers[currentQuestionIndex]}
                 />
               )}
-           
             </Box>
             <Divider />
           </Container>
@@ -461,7 +460,7 @@ function checkMatchingAnswers(correctAnswers, userAnswers) {
               }}
               onClick={() => setShowCorrectAnswer(!showCorrectAnswer)}
             >
-              {showCorrectAnswer?"Hide Answer":"Show Answer"}
+              {showCorrectAnswer ? "Hide Answer" : "Show Answer"}
             </Button>
             <Button
               variant="contained"
