@@ -20,27 +20,32 @@ export default function MatchingQuestion({showAnswers = false,correctAnswers=[
   { id: 1, question: "Apple", answer: "Fruit A" },
   { id: 2, question: "Banana", answer: "Fruit B" },
   { id: 3, question: "Cherry", answer: "Fruit C" },
-],selectedAnswer = [], saveUserAnswer}) {
+],selectedAnswer = [], saveUserAnswer,saveCorrectAnswer=false}) {
   const [leftItems, setLeftItems] = useState([]);
   const [rightItems, setRightItems] = useState([]);
   const [matches, setMatches] = useState(selectedAnswer);
+  const [selectedAns, setselectedAns] = useState(selectedAnswer);
+
 
   useEffect(() => {
     const shuffledAnswers = shuffleArray(correctAnswers);
     setLeftItems(shuffledAnswers.map(item => item.question));
     setRightItems(shuffledAnswers.map(item => item.answer));
+
   }, []);
+
+
 
   useEffect(() => {
     showCorrectAnswers()
-
   }, [showAnswers]);
 
 
   useEffect(() => {
-    if (saveUserAnswer) {
+    if (saveUserAnswer && !showAnswers) {
       saveUserAnswer(matches); // Use the updated values
     }
+  
   }, [matches]);
 
   const handleDrop = (draggableId, droppableId) => {
@@ -83,11 +88,14 @@ export default function MatchingQuestion({showAnswers = false,correctAnswers=[
         Question: answer.question,
         customerAnswer: answer.answer,
       }));
+
       setMatches(correctMatches);
+      
     }
-    {
-    
-      setMatches(selectedAnswer);
+    else if(!showAnswers){
+      if(selectedAnswer!=[]){
+        setMatches(selectedAns);
+      }
     }
   };
 

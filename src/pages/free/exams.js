@@ -193,9 +193,18 @@ export default function Freeexam() {
   const currentQuestion = questions[currentQuestionIndex];
 
   const showResults = () => {
-    alert(
-      `You have completed the exam! Result is ${result} out of ${questions.length}`
-    );
+
+    if (questions[currentQuestionIndex].answerType === "matching"){
+      console.log(questions[currentQuestionIndex].correctAnswers)
+      console.log("-----------------------")
+      console.log(userAnswers)
+
+      checkMatchingAnswers(questions[currentQuestionIndex].correctAnswers,userAnswers)
+    }
+    // alert(
+    //   `You have completed the exam! Result is ${result} out of ${questions.length}`
+      
+    // );
   };
 
   const handleNext = () => {
@@ -203,28 +212,32 @@ export default function Freeexam() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setShowCorrectAnswer(false);
     }
-    if (currentQuestionIndex === questions.length - 1) {
+    // if (currentQuestionIndex === questions.length - 1) {
       showResults();
-    }
+
+    // }
     console.log(userAnswers);
     console.log(currentQuestionIndex)
   };
 
-  const handleSingleUserAnswers = (answer) => {
-    setUserAnswers((prevAnswers) => {
-      const newAnswers = [...prevAnswers];
-      newAnswers[currentQuestionIndex] = answer;
-      return newAnswers;
-    });
-  }
+  // const handleSingleUserAnswers = (answer) => {
+  //   setUserAnswers((prevAnswers) => {
+  //     const newAnswers = [...prevAnswers];
+  //     newAnswers[currentQuestionIndex] = answer;
+  //     return newAnswers;
+  //   });
+  // }
 
-  const handleMultipleUserAnswers = (answer) => {
-    setUserAnswers((prevAnswers) => {
-        const newAnswers = [...prevAnswers];
-        newAnswers[currentQuestionIndex] = answer; // Push the entire 'answer' array
-        return newAnswers;
-    });
-  }
+  // const handleMultipleUserAnswers = (answer) => {
+  //   setUserAnswers((prevAnswers) => {
+  //       const newAnswers = [...prevAnswers];
+  //       newAnswers[currentQuestionIndex] = answer; // Push the entire 'answer' array
+  //       return newAnswers;
+  //   });
+  // }
+
+
+
 
   const handleUserAnswer = (answer) => {
     setUserAnswers((prevAnswers) => {
@@ -234,6 +247,37 @@ export default function Freeexam() {
     });
   }
 
+
+  ///check result
+
+
+  //matchingResult
+
+function checkMatchingAnswers(correctAnswers, userAnswers) {
+  if (correctAnswers.length !== userAnswers.length) {
+    setResult(result)
+    console.log("false")
+    return false;
+  }
+
+  const correctAnswersMap = new Map();
+  correctAnswers.forEach(({ question, answer }) => {
+    correctAnswersMap.set(question, answer);
+  });
+
+  for (let { question, answer } of userAnswers) {
+    if (correctAnswersMap.get(question) !== answer) {
+      console.log("false")
+
+      setResult(result)
+      return false;
+    }
+  }
+  setResult(result+1)
+  console.log("true")
+
+  return true;
+}
   
     
 
@@ -417,7 +461,7 @@ export default function Freeexam() {
               }}
               onClick={() => setShowCorrectAnswer(!showCorrectAnswer)}
             >
-              Show Answer
+              {showCorrectAnswer?"Hide Answer":"Show Answer"}
             </Button>
             <Button
               variant="contained"
