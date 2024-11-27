@@ -6,6 +6,7 @@ import VisionSection from "./_sections/VisionSection";
 import MissionSection from "./_sections/MissionSection";
 import CEOSection from "./_sections/CEO";
 import MainLayout from "@/layout/MainLayout";
+import ValuesSection from "./_sections/ValuesSection";
 
 
 export default function About() {
@@ -19,11 +20,13 @@ export default function About() {
           Who Are We
         </Typography>
         <Typography variant="body1" color="textSecondary" align="center">
-          PM-Academy is a leading provider of project management training and certification. We offer a variety of courses and programs to help you achieve your goals. Our mission is to provide you with the knowledge and skills you need to succeed in your career.
+        At PM-Academy, we are committed to transforming project management education by providing practical, real-world training that goes beyond traditional learning. Founded by Eng. Mohamed Megahed, a seasoned project management professional with over 24 years of experience, our academy offers a comprehensive suite of courses designed to meet the needs of today’s learners. 
+Our approach blends theoretical knowledge with hands-on application, empowering learners to excel in their careers.
         </Typography>
         </Box>
         <VisionSection />
         <MissionSection />
+        <ValuesSection/>
       </Container>
       <CEOSection />
       <Box>

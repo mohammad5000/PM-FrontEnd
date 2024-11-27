@@ -108,7 +108,7 @@ export default function MatchingQuestion({showAnswers = false,correctAnswers=[
           Match the items
         </Typography>
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             {rightItems.length > 0 ? (
               rightItems.map((item) => (
                 <Box key={item} display="flex" flexDirection="column" justifyContent="flex-start">
@@ -135,7 +135,7 @@ export default function MatchingQuestion({showAnswers = false,correctAnswers=[
               <Typography variant="body1">Loading right items...</Typography>
             )}
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             {leftItems.length > 0 ? (
               <DroppableContainer onDrop={handleDrop}>
                 {leftItems.map((item) => (

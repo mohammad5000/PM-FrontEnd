@@ -43,16 +43,18 @@ const VisionSection = ({}) => {
 
           {/* Title */}
           <Typography variant="h5" component="h2" fontWeight="bold">
-            35,000+ Happy Students Joined With Us To Achieve Their Goals
+          To be the global leader in project management education
           </Typography>
 
           {/* Description */}
           <Typography variant="body2" color="textSecondary">
-            Lorem ipsum dolor sit amet consectetur adipiscing elit sed eiusmod ex tempor incididunt labore dolore magna aliquaenim minim.
+          driving a sustainable transformation by combining practical, real-world experience with academic excellence. PM-Academy aims to empower individuals and organizations to achieve excellence through innovative, practical, and accessible learning solutions. We are committed to fostering professionalism, ethics, and inclusivity while qualifying professionals before certifying them, inspiring them to excel in a dynamic and diverse world.          
+          
+          
           </Typography>
 
           {/* Bullet Points */}
-          <Box component="ul" sx={{ pl: 2, m: 0 }}>
+          {/* <Box component="ul" sx={{ pl: 2, m: 0 }}>
             <Typography component="li" variant="body2" color="textSecondary">
               Expert-led educational experiences.
             </Typography>
@@ -62,7 +64,7 @@ const VisionSection = ({}) => {
             <Typography component="li" variant="body2" color="textSecondary">
               Educational opportunities at every investment level.
             </Typography>
-          </Box>
+          </Box> */}
         </Stack>
       </Stack>
     </Box>

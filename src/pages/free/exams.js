@@ -16,6 +16,7 @@ import Link from "next/link";
 import SingleChoise from "./_QuistionAnswers/SingleChoise";
 import MultipleChoice from "./_QuistionAnswers/MultibleChoise";
 import MatchingQuestion from "./_QuistionAnswers/Matching";
+import ResultModal from "@/components/ModalResult";
 
 const shuffleArray = (array) => {
   let shuffledArray = [...array];
@@ -41,7 +42,7 @@ const initQuistions = [
   },
   {
     question: "Match the following elements with their symbols:",
-    image: "/assets/Images/elements.jpg",
+    image: "/assets/Images/tree-736885_640.jpg",
     correctAnswers: [
       { id: 1, question: "Hydrogen", answer: "H" },
       { id: 2, question: "Oxygen", answer: "O" },
@@ -63,7 +64,7 @@ const initQuistions = [
   },
   {
     question: "Match the following countries with their capitals:",
-    image: "/assets/Images/countries.jpg",
+    image: "/assets/Images/tree-736885_640.jpg",
     correctAnswers: [
       { id: 1, question: "Italy", answer: "Rome" },
       { id: 2, question: "Spain", answer: "Madrid" },
@@ -85,7 +86,7 @@ const initQuistions = [
   },
   {
     question: "Match the following authors with their books:",
-    image: "/assets/Images/books.jpg",
+    image: "/assets/Images/tree-736885_640.jpg",
     correctAnswers: [
       { id: 1, question: "J.R.R. Tolkien", answer: "The Hobbit" },
       { id: 2, question: "George Orwell", answer: "1984" },
@@ -107,7 +108,7 @@ const initQuistions = [
   },
   {
     question: "Match the following languages with their countries:",
-    image: "/assets/Images/languages.jpg",
+    image: "/assets/Images/tree-736885_640.jpg",
     correctAnswers: [
       { id: 1, question: "French", answer: "France" },
       { id: 2, question: "Spanish", answer: "Spain" },
@@ -129,7 +130,7 @@ const initQuistions = [
   },
   {
     question: "Match the following artists with their famous works:",
-    image: "/assets/Images/artists.jpg",
+    image: "/assets/Images/tree-736885_640.jpg",
     correctAnswers: [
       { id: 1, question: "Leonardo da Vinci", answer: "Mona Lisa" },
       { id: 2, question: "Vincent van Gogh", answer: "Starry Night" },
@@ -151,7 +152,7 @@ const initQuistions = [
   },
   {
     question: "Match the following movies with their directors:",
-    image: "/assets/Images/movies.jpg",
+    image: "/assets/Images/tree-736885_640.jpg",
     correctAnswers: [
       { id: 1, question: "Steven Spielberg", answer: "Jurassic Park" },
       { id: 2, question: "James Cameron", answer: "Avatar" },
@@ -173,7 +174,7 @@ const initQuistions = [
   },
   {
     question: "Match the following scientists with their discoveries:",
-    image: "/assets/Images/scientists.jpg",
+    image: "/assets/Images/tree-736885_640.jpg",
     correctAnswers: [
       { id: 1, question: "Isaac Newton", answer: "Law of Gravity" },
       { id: 2, question: "Albert Einstein", answer: "Theory of Relativity" },
@@ -189,6 +190,7 @@ export default function Freeexam() {
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const [userAnswers, setUserAnswers] = useState([]);
   const [result, setResult] = useState(0);
+  const [ModalResult, SetModalResult] = useState(false)
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -203,7 +205,7 @@ export default function Freeexam() {
           userAnswerForIndex
         );
         if (isCorrect) {
-            tempResult += 1;
+          tempResult += 1;
         }
       }
       else if (question.answerType === "single") {
@@ -213,18 +215,31 @@ export default function Freeexam() {
       } else if (question.answerType === "multiple") {
         const userAnswerForIndex = userAnswers[index] || []
         const isCorrect = question.correct.every((answer) =>
-            userAnswerForIndex.includes(answer)
+          userAnswerForIndex.includes(answer)
         );
         if (isCorrect) {
           tempResult += 1;
         }
       }
     });
-    setResult(tempResult); 
-    alert(
-      `You have completed the exam! Result is ${tempResult} out of ${questions.length}`
-    );
+    setResult(tempResult);
+    handleModalOpen()
+    // alert(
+    //   `You have completed the exam! Result is ${tempResult} out of ${questions.length}`
+    // );
   };
+
+
+
+
+  const handleModalOpen = () => {
+    SetModalResult(true);
+  };
+
+  const handleModalClose = () => {
+    SetModalResult(false);
+  };
+
 
   const handleNext = () => {
     if (currentQuestionIndex < questions.length - 1) {
@@ -440,8 +455,9 @@ export default function Freeexam() {
           </Container>
           <Stack
             direction={"row"}
-            className="flex items-center justify-between p-5"
+            className="flex items-center justify-between p-5 md:flex-nowrap flex-wrap"
           >
+            
             <Button
               variant="contained"
               size="large"
@@ -450,6 +466,7 @@ export default function Freeexam() {
             >
               Previous
             </Button>
+            <div className="hidden md:block">
             <Button
               variant="contained"
               size="large"
@@ -462,17 +479,49 @@ export default function Freeexam() {
             >
               {showCorrectAnswer ? "Hide Answer" : "Show Answer"}
             </Button>
-            <Button
+            </div>
+            {
+              currentQuestionIndex >= questions.length - 1 ? (
+
+                <Button aria-label="Result"
+                  variant="contained"
+                  size="large"
+                  className="bg-[#6524D3] w-32"
+                  onClick={showResults}>
+                  Result
+                </Button>
+              ) : (<Button
+                variant="contained"
+                size="large"
+                className="bg-[#6524D3] w-32"
+                onClick={handleNext}
+              >
+                Next
+              </Button>)
+            }
+
+<div className="block md:hidden w-full">
+<br/>
+
+<Button
               variant="contained"
               size="large"
-              className="bg-[#6524D3] w-32"
-              onClick={handleNext}
+              className="w-full"
+              sx={{
+                backgroundColor: "white",
+                border: "2px solid #6524D3 ",
+                color: "#6524D3",
+              }}
+              onClick={() => setShowCorrectAnswer(!showCorrectAnswer)}
             >
-              Next
+              {showCorrectAnswer ? "Hide Answer" : "Show Answer"}
             </Button>
+            </div>
           </Stack>
+          <ResultModal open={ModalResult} Result={{ examResult: result, examMax: questions.length }} handleClose={handleModalClose} />
         </Box>
       </Container>
+
     </MainLayout>
   );
 }
