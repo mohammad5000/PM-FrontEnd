@@ -18,11 +18,11 @@ export default function CoursesHeader() {
           <Typography color="inherit" fontSize={"12px"}>Courses</Typography>
         </Breadcrumbs>
 
-        <Typography variant="h5" component="h1" >
+        <Typography variant="p" component="h1" sx={{fontSize:24}}>
           Project Management Courses
         </Typography>
 
-        <Typography variant="subtitle1">
+        <Typography variant="P">
           With one of our online Project Management courses, you can pass your PMP exam with ease.
         </Typography>
       </Container>

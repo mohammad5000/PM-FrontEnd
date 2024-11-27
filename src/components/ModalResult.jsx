@@ -44,10 +44,10 @@ const ResultModal = ({ open, handleClose, Result }) => {
           >
             <CloseIcon />
           </IconButton>
-=          <Typography variant='h5'>Your Score is</Typography>
-          <Typography variant='h2'>{Result.examResult}</Typography>
+=          <Typography variant='p'>Your Score is</Typography>
+          <Typography variant='p'>{Result.examResult}</Typography>
           <Typography variant='body1'>over</Typography>
-          <Typography variant='h4'>{Result.examMax}</Typography>
+          <Typography variant='p'>{Result.examMax}</Typography>
 =        </Box>
       </Box>
     </Modal>

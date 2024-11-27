@@ -70,6 +70,9 @@ export default function HeroSectionPrime({
             }}
             // className="bg-red-400"
           >
+
+
+            
             <Container>
               
             <Box
@@ -94,15 +97,17 @@ export default function HeroSectionPrime({
               {content}
             </Box>
             </Container>
+
+
           </Box>
           {SideImage && (
             <Box
               sx={{
                 variant: "dev", // This may not apply as expected. Use sx prop for styling.
-                display: {xs:"none",md:"flex"}, // Optional: Adjusts layout for Box
+                display: {xs:"none",sm:"flex"}, // Optional: Adjusts layout for Box
                 justifyContent: "center", // Center the content if needed
                 alignItems: "center", // Center the content if needed
-                width: "100%", // Adjust the width as needed
+                width: "60%", // Adjust the width as needed
                 height: "auto", // Height can be adjusted based on requirements
               }}
             >

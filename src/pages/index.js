@@ -23,7 +23,7 @@ export default function Home() {
               variant="h3"
               sx={{
                 color: "#000000", // Change color for xs size, inherit for larger sizes
-                fontSize: { xs: "24px", md: "32px" }, // Responsive font size
+                fontSize: { xs: "24px", md: "30px" }, // Responsive font size
                 fontWeight: "bold",
               }}
             >
@@ -34,11 +34,12 @@ export default function Home() {
           }
           content={
             <Stack direction="column">
+              <br/>
               <Typography
                 variant="p"
                 sx={{
                   color: "#000000", // Change color for xs size, inherit for larger sizes
-                  fontSize: { xs: "20px", md: "20px" }, // Responsive font size
+                  fontSize: { xs: "14px", md: "16px" }, // Responsive font size
                 }}
               >
                 Start, switch, or advance your career in project management with
@@ -136,7 +137,7 @@ function WhyUsSection() {
       </Box>
       <Typography
         className="pb-10"
-        variant="h6"
+        variant="p"
         sx={{ color: "white", fontSize: { xs: '1rem', md: '1.5rem' } }} // Responsive font size
       >
         {Text}
@@ -147,12 +148,12 @@ function WhyUsSection() {
   return (
     <div className="flex flex-col items-center justify-center bg-gradient-to-b from-[#6524D3] to-[#007DA5] text-white text-center md:px-[144px] py-5">
       <Stack direction="column" sx={{ color: "white", width: "100%", pb: 10 }}>
-        <Typography variant="h4" sx={{ color: "white", fontSize: { xs: '1.5rem', md: '2.5rem' } }}>
+        <Typography variant="p" sx={{ color: "white", fontSize: { xs: '1.5rem', md: '2.5rem' } }}>
           Why Study With Us?
         </Typography>
-        <Typography variant="body1" sx={{ color: "white", fontSize: { xs: '1rem', md: '1.25rem' } }}>
+        {/* <Typography variant="body1" sx={{ color: "white", fontSize: { xs: '1rem', md: '1.25rem' } }}>
           Why Study With Us?
-        </Typography>
+        </Typography> */}
       </Stack>
       <Stack
         spacing={2}
@@ -188,7 +189,7 @@ function WhyUsSection() {
         direction="column"
         sx={{ color: "white", width: "100%", pb: 5 }}
       >
-        <Typography variant="h4" sx={{ color: "white", fontSize: { xs: '1.5rem', md: '2.5rem' } }}>
+        <Typography variant="p" sx={{ color: "white", fontSize: { xs: '1.5rem', md: '2.5rem' } }}>
           What Customers Says
         </Typography>
         <Typography variant="body1" sx={{ color: "white", fontSize: { xs: '1rem', md: '1.25rem' } }}>
@@ -253,7 +254,7 @@ const ProductHomeHeader = () => {
           },
         }}
       >
-        View Courses
+        Courses
       </Button>
     </Box>
   );

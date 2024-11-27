@@ -85,7 +85,7 @@ export default function CustomizedAccordions({ mainTopic, accordionData }) {
     return (
         <Container>
             <Box className="bg-[#6524D3] p-4">
-                <Typography color='white' fontWeight={"bold"} variant='h6'>{mainTopic}</Typography>
+                <Typography color='white' fontWeight={"bold"} variant='p'>{mainTopic}</Typography>
             </Box>
             {accordionData && accordionData.length > 0 ? (
                 accordionData.map((item) => (

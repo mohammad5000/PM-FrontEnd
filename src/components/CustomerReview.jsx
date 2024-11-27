@@ -6,7 +6,7 @@ import TruncateText from "@/utilites/TextTrancate";
 const CustomerReview = ({ Review, MainColor = "white" }) => (
   <Stack direction="column" className='flex flex-col items-center justify-center'>
     <Stack spacing={2} direction="row" className='flex flex-row items-center justify-between w-full px-3 mb-2'>
-      <UserTag userImage={Review.userImage} userName={TruncateText(Review.userName, 16)} size={30} />
+      <UserTag userImage={Review.userImage} userName={TruncateText(Review.userName, 15)} size={24} />
 
       <StarRating rating={Review.rating} />
     </Stack>

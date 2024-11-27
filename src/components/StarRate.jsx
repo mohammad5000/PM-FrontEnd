@@ -4,7 +4,7 @@ import React from 'react';
 import { Box, Rating, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 
-const StarRating = ({ rating, fontSize = 16, iconSize = 24, allowChange = true }) => {
+const StarRating = ({ rating, fontSize = 12, iconSize = 12, allowChange = true }) => {
 
   return (
     <Box display="flex" alignItems="center">
@@ -16,11 +16,11 @@ const StarRating = ({ rating, fontSize = 16, iconSize = 24, allowChange = true }
           <>
 
             <div className='md:flex hidden'>
-              <Rating name="read-only" value={rating} readOnly />
+              <Rating name="read-only" sx={{fontSize:16}} value={rating} readOnly />
 
             </div>
             <div className='md:hidden flex'>
-              <StarIcon color='#FAAF00' sx={{ fontSize: "24px", color: '#FAAF00' }} />
+              <StarIcon color='#FAAF00' sx={{ fontSize: "10px", color: '#FAAF00' }} />
             </div></>
         ) : (
           <Rating name="read-only" value={rating} readOnly />

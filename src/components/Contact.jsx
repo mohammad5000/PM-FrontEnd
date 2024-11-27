@@ -74,7 +74,7 @@ export default function ContactForm() {
           padding: 4,
         }}
       >
-        <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1 }}>
+        <Typography variant="p" sx={{ fontWeight: "bold", mb: 1,fontSize:24 }}>
           How Can We Help?
         </Typography>
         <Typography variant="body2" sx={{ mb: 3, textAlign: "center" }}>

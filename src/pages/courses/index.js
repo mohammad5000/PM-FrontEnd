@@ -78,7 +78,7 @@ export default function Courses({}) {
         <Container>
           <Box>
           <FormControl sx={{ width: "150px" ,marginLeft:{lg:14}}}>
-            <InputLabel id="category-select-label" sx={{}}>
+            <InputLabel  id="category-select-label" sx={{}}>
               Categories
             </InputLabel>
 
